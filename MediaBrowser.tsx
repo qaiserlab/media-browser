@@ -1,9 +1,11 @@
 import React from "react";
-import { Row, Col, Tabs, Modal, Button } from "antd";
+import { Row, Col, Tabs, Modal, Upload, Button } from "antd";
 import {
   FolderOutlined,
   FolderOpenOutlined,
-  TableOutlined
+  TableOutlined,
+  UploadOutlined,
+  BorderlessTableOutlined
 } from "@ant-design/icons";
 
 import styles from './styles';
@@ -147,6 +149,16 @@ export default class MediaBrowser extends React.Component<
     });
   };
 
+  promptUrl = () => {
+    const url = prompt('Insert Image/Video URL:');
+
+    if (url) {
+      if (this.props.onGrabUrl) {
+        this.props.onGrabUrl(url);
+      }
+    }
+  };
+
   componentDidMount() {
     this.setState({
       itemActive: this.getItemByKey(this.props.value),
@@ -165,6 +177,24 @@ export default class MediaBrowser extends React.Component<
   }
 
   render() {
+    const actions = (
+      <React.Fragment>
+        <Upload>
+          <Button 
+            type={'text'} 
+            size={'small'}
+            icon={<UploadOutlined />}
+          >Upload</Button>
+        </Upload>
+        <Button 
+          type={'text'}
+          size={'small'}
+          icon={<BorderlessTableOutlined />}
+          onClick={this.promptUrl}
+        >From URL</Button>
+      </React.Fragment>
+    );
+
     return (
       <React.Fragment>
         <section>
@@ -198,7 +228,11 @@ export default class MediaBrowser extends React.Component<
           onOk={this.handleOk}
           onCancel={this.handleCancel}
         >
-          <Tabs tabPosition={"left"} onChange={this.handleTabSelect}>
+          <Tabs 
+            tabPosition={"left"} 
+            onChange={this.handleTabSelect}
+            tabBarExtraContent={actions}
+          >
             {this.props.dataSource.map((tab: TabInterface) => {
               return (
                 <TabPane

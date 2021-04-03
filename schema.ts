@@ -17,6 +17,8 @@ export interface PropsInterface {
   dataSource?: Array<TabInterface>;
   onChange?: any;
   onBlur?: any;
+  onUpload?: any;
+  onGrabUrl?: any;
 }
 
 export interface StateInterface {
