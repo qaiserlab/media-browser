@@ -8,7 +8,7 @@ import {
   BorderlessTableOutlined
 } from "@ant-design/icons";
 
-import styles from './styles';
+import style from './style';
 
 const { TabPane } = Tabs;
 
@@ -199,7 +199,7 @@ export default class MediaBrowser extends React.Component<
       <React.Fragment>
         <section>
           <figure
-            style={styles.preview.figure}
+            style={style.preview.figure}
           >
             Preview
             { 
@@ -207,14 +207,14 @@ export default class MediaBrowser extends React.Component<
               <img 
                 src={this.state.itemActive.url} 
                 alt={this.state.itemActive.title} 
-                style={styles.preview.img}
+                style={style.preview.img}
               />
             }
           </figure>
           <Button
             icon={<TableOutlined />}
             onClick={this.handleBrowse}
-            style={styles.preview.button}
+            style={style.preview.button}
           >
             Browse
           </Button>
@@ -223,7 +223,7 @@ export default class MediaBrowser extends React.Component<
         <Modal
           title={"Media Browser"}
           width={1000}
-          bodyStyle={styles.modal.wrapper}
+          bodyStyle={style.modal.wrapper}
           visible={this.state.isModalVisible}
           onOk={this.handleOk}
           onCancel={this.handleCancel}
@@ -237,14 +237,14 @@ export default class MediaBrowser extends React.Component<
               return (
                 <TabPane
                   tab={
-                    <section style={styles.modal.tab.wrapper}>
+                    <section style={style.modal.tab.wrapper}>
                       {tab.key === this.state.tabKeyActive ? (
                         <FolderOpenOutlined
-                          style={styles.modal.tab.icon}
+                          style={style.modal.tab.icon}
                         />
                       ) : (
                         <FolderOutlined
-                          style={styles.modal.tab.icon}
+                          style={style.modal.tab.icon}
                         />
                       )}
 
@@ -253,13 +253,13 @@ export default class MediaBrowser extends React.Component<
                     </section>
                   }
                   key={tab.key}
-                  style={styles.modal.tab.body.wrapper}
+                  style={style.modal.tab.body.wrapper}
                 >
                   <Row gutter={[8, 8]}>
                     {tab.items.map((item: ItemInterface) => {
-                      const aStyle = {...styles.modal.tab.body.a};
-                      const figureStyle = {...styles.modal.tab.body.figure};
-                      const imgStyle = {...styles.modal.tab.body.img};
+                      const aStyle = {...style.modal.tab.body.a};
+                      const figureStyle = {...style.modal.tab.body.figure};
+                      const imgStyle = {...style.modal.tab.body.img};
 
                       if (item.key === this.state.itemKeyActive) {
                         aStyle.outline = "solid whitesmoke 3px";
